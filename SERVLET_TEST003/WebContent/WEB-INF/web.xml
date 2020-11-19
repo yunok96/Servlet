@@ -13,10 +13,17 @@
   <servlet>
   	<servlet-name>MYOWN</servlet-name>
   	<servlet-class>servlet.ServletChoi</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+  	<init-param>
+  		<param-name>jdbcdriver</param-name>
+  		<param-value>com.mysql.jdbc.Driver</param-value>
+  	</init-param>
   </servlet>
+  
   <servlet-mapping>
   	<servlet-name>MYOWN</servlet-name>
   	<url-pattern>*.CHOI</url-pattern>
+  	<url-pattern>/</url-pattern>
   </servlet-mapping>
   
 </web-app>
