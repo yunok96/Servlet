@@ -27,7 +27,7 @@ public class MainServlet extends HttpServlet {
 				request.getRequestDispatcher("/view/board/boardList.jsp").forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-				request.setAttribute("message", "ì¡°íšŒ ì˜¤ë¥˜ ë°œìƒ");
+				request.setAttribute("message", "°Ô½Ã±Û Á¶È¸ ½ÇÆĞ¤Ğ");
 				request.setAttribute("url", "/BOARD_TEST001/view/main/menu.jsp");
 				request.getRequestDispatcher("/view/common/alert.jsp").forward(request, response);
 			}
@@ -38,7 +38,7 @@ public class MainServlet extends HttpServlet {
 				request.getRequestDispatcher("/view/board/boardDetail.jsp").forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-				request.setAttribute("message", "ìƒì„¸ ì¡°íšŒ ì˜¤ë¥˜ ë°œìƒ");
+				request.setAttribute("message", "°Ô½Ã±Û »ó¼¼ Á¶È¸ ½ÇÆĞ¤Ğ");
 				request.setAttribute("url", "/BOARD_TEST001/view/main/menu.jsp");
 				request.getRequestDispatcher("/view/common/alert.jsp").forward(request, response);
 			}
@@ -49,15 +49,15 @@ public class MainServlet extends HttpServlet {
 		if ("/BOARD_TEST001/board/insertBoard.samsung".equals(uri)) {
 			try {
 				if (new BoardService().insertBoard(request)) {
-					request.setAttribute("message", "ì…ë ¥ ì„±ê³µ!");
+					request.setAttribute("message", "°Ô½Ã±Û ÀÛ¼º ¼º°ø!");
 				} else {
-					request.setAttribute("message", "ì…ë ¥ ì‹¤íŒ¨");
+					request.setAttribute("message", "°Ô½Ã±Û ÀÛ¼º ½ÇÆĞ¤Ğ");
 				}
 				request.setAttribute("url", "/BOARD_TEST001/view/main/menu.jsp");
 				request.getRequestDispatcher("/view/common/alert.jsp").forward(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-				request.setAttribute("message", "ì…ë ¥ ì˜¤ë¥˜ ë°œìƒ");
+				request.setAttribute("message", "°Ô½Ã±Û ÀÛ¼º ½ÇÆĞ¤Ğ");
 				request.setAttribute("url", "/BOARD_TEST001/view/main/menu.jsp");
 				request.getRequestDispatcher("/view/common/alert.jsp").forward(request, response);
 			}

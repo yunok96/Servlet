@@ -1,6 +1,5 @@
 package model.dao;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,36 +23,27 @@ public class BoardDao {
 		String sql = " select count(*) as cnt from board ";
 		System.out.println(sql);
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery(sql);
+		ResultSet rs = pstmt.executeQuery();
 		while(rs.next()) {
 			count = rs.getInt(1);
 		}
 		return count;
 	}
-	public ResultSet selectBoard(Connection conn,Board board) throws SQLException {
-		String sql = " select * from board ";
+	public ResultSet selectBoard(Connection conn,Board board,Page page) throws SQLException {
+		String sql = " select *,DATE_FORMAT(create_date,'%y.%m.%d') as c_date  from board ";
 		if (0 != board.getSeq()) {
 			sql += " where seq = ?";
+		} else {
+			sql += " order by seq desc limit ?, "+ PageUtil.PER_PAGE_CNT;
 		}
+		System.out.println(sql);
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		if (0 != board.getSeq()) {
 			pstmt.setInt(1, board.getSeq());
+		} else {
+			pstmt.setInt(1, (page.getPageNo()-1) * PageUtil.PER_PAGE_CNT);
 		}
-		System.out.println(sql);
 		return pstmt.executeQuery();
 	}
-//	public ResultSet selectBoard(Connection conn,Board board) throws SQLException { 실수 원본
-//		String sql = " select * from board ";
-//		if (0 != board.getSeq()) {
-//			sql += " where seq = ? ";
-//		}
-//		PreparedStatement pstmt = conn.prepareStatement(sql);
-//		if (0 != board.getSeq()) {
-//			pstmt.setInt(1, board.getSeq());
-//		}
-//		pstmt = conn.prepareStatement(sql);
-//		System.out.println(sql);
-//		return pstmt.executeQuery();
-//	}
 
 }

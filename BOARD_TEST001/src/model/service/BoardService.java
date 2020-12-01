@@ -41,20 +41,27 @@ public class BoardService {
 		} else {
 			board = new Board(0,null,null,null);
 		}
+		Page page = new Page();
+		if(null != request.getParameter("pageNo")) {
+			page.setPageNo(Integer.valueOf(request.getParameter("pageNo")));
+		} else {
+			page.setPageNo(1);
+		}
 		Connection conn = ConnectionHandler.openConnection();
-		ResultSet rs = new BoardDao().selectBoard(conn,board);
+		ResultSet rs = new BoardDao().selectBoard(conn,board,page);
 		while (rs.next()) {
 			boardList.add(new Board(
 					rs.getInt("seq")
 					,rs.getString("title")
 					,rs.getString("content")
-					,rs.getString("create_date")));
+					,rs.getString("c_date")));
 		}
 		request.setAttribute("boardList", boardList);
-		
-		Page page = new Page();
 		page.setTotlaCnt(new BoardDao().selectBoardCount(conn));
-		new PageUtil().setPage(request, page);
+		
+		int pageCnt = new PageUtil().setPage(page);
+		page.setPageCnt(pageCnt);
+		request.setAttribute("page", page);
 	}
 	
 	

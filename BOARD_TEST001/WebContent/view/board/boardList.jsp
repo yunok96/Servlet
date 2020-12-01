@@ -28,9 +28,16 @@
 			</table>
 		</div>
 		<div>
-			<c:forEach var="pageNo" begin="1" end="${requestScope.pageCnt }" >
-				<span>${pageNo }</span>
+			<span>[Prev]</span>
+			<c:forEach var="pNo" begin="1" end="${requestScope.page.pageCnt }" >
+				<c:if test="${pNo != requestScope.page.pageNo }">
+					<span>[<a href="/BOARD_TEST001/board/boardList.samsung?pageNo=${pNo }">${pNo }</a>]</span>
+				</c:if>
+				<c:if test="${pNo == requestScope.page.pageNo }">
+					<span>[${pNo }]</span>
+				</c:if>
 			</c:forEach>
+			<span>[Next]</span>
 		</div>
 	</body>
 </html>

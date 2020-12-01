@@ -36,7 +36,7 @@ public class DBCPInit extends HttpServlet {
 	private void initConnectionPool() {
 		try {
 			String jdbcUrl = 
-					"jdbc:mysql://localhost:3306/MYOWN?" + 
+					"jdbc:mysql://localhost:3306/board?" + 
 					"useUnicode=true&characterEncoding=utf8";
 			String username = "root";
 			String pw = "1234";
@@ -60,8 +60,8 @@ public class DBCPInit extends HttpServlet {
 			
 			Class.forName("org.apache.commons.dbcp2.PoolingDriver");
 			PoolingDriver driver = 
-					(PoolingDriver) DriverManager.getDriver("jdbc:apache:commons:dbcp:MYOWN");
-			driver.registerPool("MYOWN", connectionPool);
+					(PoolingDriver) DriverManager.getDriver("jdbc:apache:commons:dbcp:");
+			driver.registerPool("board", connectionPool);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

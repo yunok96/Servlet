@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConnectionHandler {
 	public static Connection openConnection() throws SQLException {
-		String jdbcDriver = "jdbc:apache:commons:dbcp:MYOWN";
+		String jdbcDriver = "jdbc:apache:commons:dbcp:board";
 		Connection conn = DriverManager.getConnection(jdbcDriver);
 //		System.out.println(conn);
 		conn.setAutoCommit(false);
